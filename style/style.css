@@ -12,3 +12,7 @@
     border-color: rgba(0, 0, 0, 0.161);
     border-width: 1px;
 }
+
+.visited-grid-square{
+    background-color: rgba(183, 180, 180, 0.761);
+}

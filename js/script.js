@@ -1,5 +1,10 @@
-const gridSize = 16;
-createGrid(gridSize);
+initializeGrid();
+
+function initializeGrid(){
+    const gridSize = 16;
+    createGrid(gridSize);
+    enableGridSquareColorChange();
+}
 
 function createGrid(gridSize){
     let container = document.querySelector(".container");
@@ -23,4 +28,13 @@ function adjustSquareSize(gridSize){
     gridSquares.forEach(gridSquare => gridSquare.style.cssText = `width:${gridSquareWidth}%;`);
     let rows = document.querySelectorAll(".row");
     rows.forEach(row => row.style.cssText = `height:${rowHeight}%;`);
+}
+
+function enableGridSquareColorChange(){
+    let gridSquares = document.querySelectorAll(".grid-square");
+    gridSquares.forEach(gridSquare => gridSquare.addEventListener("mouseover", changeGridSquareColor));
+}
+
+function changeGridSquareColor(){
+    this.classList.add('visited-grid-square');
 }
