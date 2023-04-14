@@ -1,0 +1,14 @@
+.container{
+    width: 600px;
+    height: 600px;
+}
+
+.row{
+    display: flex;
+}
+
+.grid-square{
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.161);
+    border-width: 1px;
+}
