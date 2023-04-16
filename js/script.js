@@ -1,7 +1,7 @@
-initializeGrid();
+initializeGrid(16);
 
-function initializeGrid(){
-    const gridSize = 16;
+function initializeGrid(gridSize){
+    createGridContainer();
     createGrid(gridSize);
     enableGridSquareColorChange();
 }
@@ -37,4 +37,41 @@ function enableGridSquareColorChange(){
 
 function changeGridSquareColor(){
     this.classList.add('visited-grid-square');
+}
+
+function getGridSize(){
+    let gridSize = prompt("Please enter the number of squares per side:");
+    let isSizeValid = false;
+    while(!isSizeValid){
+        console.log(+'gridSize');
+        if(gridSize == null){
+            return;
+        }
+        else if(isNaN(gridSize)){
+            gridSize = prompt("Not a numeric value! Please try again:");
+        }
+        else if(gridSize <= 0){
+            gridSize = prompt("Please enter a number greater than 0:");
+        }
+        else if(gridSize > 100){
+            gridSize = prompt("Please enter a number less than 100:");
+        }
+        else{
+            isSizeValid = true;
+            deleteGridContainer();
+            initializeGrid(gridSize);
+        }
+    }
+}
+
+function createGridContainer(){
+    let body = document.querySelector('body');
+    let containerDiv = document.createElement('div');
+    containerDiv.classList.add('container'); 
+    body.appendChild(containerDiv);
+}
+
+function deleteGridContainer(){
+    let body = document.querySelector('body');
+    body.removeChild(body.lastChild);
 }
