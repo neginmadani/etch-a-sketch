@@ -36,7 +36,15 @@ function enableGridSquareColorChange(){
 }
 
 function changeGridSquareColor(){
-    this.classList.add('visited-grid-square');
+    if (!this.classList.contains('visited')){
+        this.style.backgroundColor = getRandomColor();
+        this.classList.add('visited');
+    }
+    else{
+        let currentColor = this.style.backgroundColor;
+        this.style.backgroundColor = darkenColor(currentColor);
+    }
+
 }
 
 function getGridSize(){
@@ -74,4 +82,27 @@ function createGridContainer(){
 function deleteGridContainer(){
     let body = document.querySelector('body');
     body.removeChild(body.lastChild);
+}
+
+function getRandomColor(){
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+function darkenColor(rgbValue){
+    let rgbList = rgbValue.substring(4, rgbValue.length-1)
+        .replace(/ /g, '')
+        .split(',');
+    for(let i = 0; i < 3; i++){
+        rgbList[i] = addTenPercentDarkness(rgbList[i])
+    }
+    return `rgb(${rgbList[0]}, ${rgbList[1]}, ${rgbList[2]})`;
+}
+
+function addTenPercentDarkness(value){
+    let darkerValue = value - Math.floor(255/10);
+    if(darkerValue < 0) darkerValue = 0;
+    return darkerValue;
 }
